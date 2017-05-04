@@ -1,0 +1,11 @@
+# train_protnet.yaml
+# from Google tf-seq2seq
+
+buckets: 10,20,30,40,120,580
+hooks:
+  - class: PrintModelAnalysisHook
+  - class: MetadataCaptureHook
+  - class: SyncReplicasOptimizerHook
+  - class: TrainSampleHook
+    params:
+      every_n_steps: 1000

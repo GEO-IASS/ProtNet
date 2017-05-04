@@ -1,0 +1,37 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} conv\PYGZus{}config.yaml}
+\PYG{c+c1}{\PYGZsh{} Based off of Google tf\PYGZhy{}seq2seq conv\PYGZus{}small configuration}
+
+\PYG{l+lScalar+lScalarPlain}{model}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{AttentionSeq2Seq}
+\PYG{l+lScalar+lScalarPlain}{model\PYGZus{}params}\PYG{p+pIndicator}{:}
+  \PYG{l+lScalar+lScalarPlain}{attention.class}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{seq2seq.decoders.attention.AttentionLayerBahdanau}
+  \PYG{l+lScalar+lScalarPlain}{attention.params}\PYG{p+pIndicator}{:}
+    \PYG{l+lScalar+lScalarPlain}{num\PYGZus{}units}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{128}
+  \PYG{l+lScalar+lScalarPlain}{bridge.class}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{seq2seq.models.bridges.ZeroBridge}
+  \PYG{l+lScalar+lScalarPlain}{embedding.dim}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{128}
+  \PYG{l+lScalar+lScalarPlain}{encoder.class}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{seq2seq.encoders.ConvEncoder}
+  \PYG{l+lScalar+lScalarPlain}{encoder.params}\PYG{p+pIndicator}{:}
+    \PYG{l+lScalar+lScalarPlain}{attention\PYGZus{}cnn.units}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{128}
+    \PYG{l+lScalar+lScalarPlain}{attention\PYGZus{}cnn.kernel\PYGZus{}size}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{3}
+    \PYG{l+lScalar+lScalarPlain}{attention\PYGZus{}cnn.layers}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{6}
+    \PYG{l+lScalar+lScalarPlain}{output\PYGZus{}cnn.units}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{128}
+    \PYG{l+lScalar+lScalarPlain}{output\PYGZus{}cnn.kernel\PYGZus{}size}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{3}
+    \PYG{l+lScalar+lScalarPlain}{output\PYGZus{}cnn.layers}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{3}
+    \PYG{l+lScalar+lScalarPlain}{position\PYGZus{}embeddings.enable}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{true}
+    \PYG{l+lScalar+lScalarPlain}{position\PYGZus{}embeddings.combiner\PYGZus{}fn}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{tensorflow.multiply}
+    \PYG{l+lScalar+lScalarPlain}{position\PYGZus{}embeddings.num\PYGZus{}positions}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{52}
+  \PYG{l+lScalar+lScalarPlain}{decoder.class}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{seq2seq.decoders.AttentionDecoder}
+  \PYG{l+lScalar+lScalarPlain}{decoder.params}\PYG{p+pIndicator}{:}
+    \PYG{l+lScalar+lScalarPlain}{rnn\PYGZus{}cell}\PYG{p+pIndicator}{:}
+      \PYG{l+lScalar+lScalarPlain}{cell\PYGZus{}class}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{LSTMCell}
+      \PYG{l+lScalar+lScalarPlain}{cell\PYGZus{}params}\PYG{p+pIndicator}{:}
+        \PYG{l+lScalar+lScalarPlain}{num\PYGZus{}units}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{128}
+      \PYG{l+lScalar+lScalarPlain}{dropout\PYGZus{}input\PYGZus{}keep\PYGZus{}prob}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{0.8}
+      \PYG{l+lScalar+lScalarPlain}{dropout\PYGZus{}output\PYGZus{}keep\PYGZus{}prob}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{1.0}
+      \PYG{l+lScalar+lScalarPlain}{num\PYGZus{}layers}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{1}
+  \PYG{l+lScalar+lScalarPlain}{optimizer.name}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{Adam}
+  \PYG{l+lScalar+lScalarPlain}{optimizer.learning\PYGZus{}rate}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{0.0001}
+  \PYG{l+lScalar+lScalarPlain}{source.max\PYGZus{}seq\PYGZus{}len}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{50}
+  \PYG{l+lScalar+lScalarPlain}{source.reverse}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{false}
+  \PYG{l+lScalar+lScalarPlain}{target.max\PYGZus{}seq\PYGZus{}len}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{50}
+\end{Verbatim}
