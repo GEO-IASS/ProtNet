@@ -1,6 +1,7 @@
 \begin{Verbatim}[commandchars=\\\{\}]
-\PYG{c+c1}{\PYGZsh{} medium\PYGZus{}config.yaml}
-\PYG{c+c1}{\PYGZsh{} Based off of Google tf\PYGZhy{}seq2seq nmt\PYGZus{}medium configuration}
+\PYG{c+c1}{\PYGZsh{} small\PYGZus{}config.yaml}
+\PYG{c+c1}{\PYGZsh{} Based off of Google tf\PYGZhy{}seq2seq nmt\PYGZus{}small configuration}
+
 
 \PYG{l+lScalar+lScalarPlain}{model}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{AttentionSeq2Seq}
 \PYG{l+lScalar+lScalarPlain}{model\PYGZus{}params}\PYG{p+pIndicator}{:}
@@ -23,15 +24,15 @@
     \PYG{l+lScalar+lScalarPlain}{rnn\PYGZus{}cell}\PYG{p+pIndicator}{:}
       \PYG{l+lScalar+lScalarPlain}{cell\PYGZus{}class}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{LSTMCell}
       \PYG{l+lScalar+lScalarPlain}{cell\PYGZus{}params}\PYG{p+pIndicator}{:}
-        \PYG{l+lScalar+lScalarPlain}{num\PYGZus{}units}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{256}
+        \PYG{l+lScalar+lScalarPlain}{num\PYGZus{}units}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{128}
       \PYG{l+lScalar+lScalarPlain}{dropout\PYGZus{}input\PYGZus{}keep\PYGZus{}prob}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{0.8}
       \PYG{l+lScalar+lScalarPlain}{dropout\PYGZus{}output\PYGZus{}keep\PYGZus{}prob}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{1.0}
-      \PYG{l+lScalar+lScalarPlain}{num\PYGZus{}layers}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{2}
+      \PYG{l+lScalar+lScalarPlain}{num\PYGZus{}layers}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{1}
   \PYG{l+lScalar+lScalarPlain}{optimizer.name}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{Adam}
   \PYG{l+lScalar+lScalarPlain}{optimizer.params}\PYG{p+pIndicator}{:}
     \PYG{l+lScalar+lScalarPlain}{epsilon}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{0.0000008}
   \PYG{l+lScalar+lScalarPlain}{optimizer.learning\PYGZus{}rate}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{0.0001}
-  \PYG{l+lScalar+lScalarPlain}{source.max\PYGZus{}seq\PYGZus{}len}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{50}
+  \PYG{l+lScalar+lScalarPlain}{source.max\PYGZus{}seq\PYGZus{}len}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{578}
   \PYG{l+lScalar+lScalarPlain}{source.reverse}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{false}
-  \PYG{l+lScalar+lScalarPlain}{target.max\PYGZus{}seq\PYGZus{}len}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{50}
+  \PYG{l+lScalar+lScalarPlain}{target.max\PYGZus{}seq\PYGZus{}len}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{578}
 \end{Verbatim}

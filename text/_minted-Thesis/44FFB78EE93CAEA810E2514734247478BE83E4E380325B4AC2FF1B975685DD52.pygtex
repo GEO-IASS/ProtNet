@@ -31,7 +31,7 @@
       \PYG{l+lScalar+lScalarPlain}{num\PYGZus{}layers}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{1}
   \PYG{l+lScalar+lScalarPlain}{optimizer.name}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{Adam}
   \PYG{l+lScalar+lScalarPlain}{optimizer.learning\PYGZus{}rate}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{0.0001}
-  \PYG{l+lScalar+lScalarPlain}{source.max\PYGZus{}seq\PYGZus{}len}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{50}
+  \PYG{l+lScalar+lScalarPlain}{source.max\PYGZus{}seq\PYGZus{}len}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{578}
   \PYG{l+lScalar+lScalarPlain}{source.reverse}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{false}
-  \PYG{l+lScalar+lScalarPlain}{target.max\PYGZus{}seq\PYGZus{}len}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{50}
+  \PYG{l+lScalar+lScalarPlain}{target.max\PYGZus{}seq\PYGZus{}len}\PYG{p+pIndicator}{:} \PYG{l+lScalar+lScalarPlain}{578}
 \end{Verbatim}
