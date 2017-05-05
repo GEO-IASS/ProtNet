@@ -6,22 +6,22 @@
 \contentsline {subsection}{\numberline {2.3}Secondary Structure Prediction}{12}{subsection.2.3}
 \contentsline {section}{\numberline {3}Approach}{15}{section.3}
 \contentsline {subsection}{\numberline {3.1}Encoder / Decoder Architecture}{15}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}ProtVec}{15}{subsection.3.2}
-\contentsline {section}{\numberline {4}Implementation}{17}{section.4}
-\contentsline {subsection}{\numberline {4.1}Models}{17}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Attention Mechanism}{18}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}TensorFlow}{19}{subsection.4.3}
+\contentsline {subsection}{\numberline {3.2}ProtVec}{16}{subsection.3.2}
+\contentsline {section}{\numberline {4}Implementation}{18}{section.4}
+\contentsline {subsection}{\numberline {4.1}Models}{18}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Attention Mechanism}{19}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}TensorFlow}{20}{subsection.4.3}
 \contentsline {subsection}{\numberline {4.4}Regularization}{21}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}Optimizers}{21}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.5}Optimizers}{22}{subsection.4.5}
 \contentsline {subsection}{\numberline {4.6}Dataset}{23}{subsection.4.6}
 \contentsline {subsection}{\numberline {4.7}Computing Resources}{24}{subsection.4.7}
-\contentsline {section}{\numberline {5}Results}{24}{section.5}
-\contentsline {subsection}{\numberline {5.1}Small Model}{25}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Medium Model}{25}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Large Model}{25}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}Convolutional Model}{25}{subsection.5.4}
-\contentsline {subsection}{\numberline {5.5}Computation Time}{25}{subsection.5.5}
-\contentsline {subsection}{\numberline {5.6}Summary}{26}{subsection.5.6}
-\contentsline {section}{\numberline {6}Conclusion}{26}{section.6}
-\contentsline {section}{\numberline {7}References}{28}{section.7}
-\contentsline {section}{\numberline {8}Appendix}{32}{section.8}
+\contentsline {section}{\numberline {5}Results}{25}{section.5}
+\contentsline {subsection}{\numberline {5.1}Small Model}{26}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Medium Model}{26}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Large Model}{26}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Convolutional Model}{26}{subsection.5.4}
+\contentsline {subsection}{\numberline {5.5}Computation Time}{26}{subsection.5.5}
+\contentsline {subsection}{\numberline {5.6}Summary}{27}{subsection.5.6}
+\contentsline {section}{\numberline {6}Conclusion}{27}{section.6}
+\contentsline {section}{\numberline {7}References}{29}{section.7}
+\contentsline {section}{\numberline {8}Appendix}{33}{section.8}

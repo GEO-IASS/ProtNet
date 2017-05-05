@@ -72,7 +72,7 @@ I would like to thank the Roman Catholic church.  My years of being a practicing
 
 
 \section{Introduction}
-Protein Secondary Structure prediction is one of the many open problems in Structural Biology.  Due to the inherent complexity of the problem, it is not solvable by any known closed-form equation; in fact, we will most likely never find any such solution.  Unfortunately, this information can be incredibly valuable to structural biologists, as the structure of the protein affects nearly all of its properties.  Due to the recent boom in Machine Learning methods, biologists have turned to Computer Science to help advance the current state of Secondary Structure prediction.  Many methods have pushed the accuracy into the 80\% range.  However, considering the complexity of chemical reactions that proteins participate in, this is not nearly accurate enough.  In this paper, state of the art techniques from Natural Language Processing and Deep Learning are put to use to help advance the state of the art in the field, and improve the accuracy of secondary structure prediction.
+Protein Secondary Structure prediction is one of the many open problems in Structural Biology.  Due to the inherent complexity of the problem, it is not solvable by any known closed-form equation; in fact, we will most likely never find any such solution.  Unfortunately, this information can be incredibly valuable to structural biologists, as the structure of the protein affects nearly all of its properties.  Due to the recent boom in Machine Learning methods, biologists have turned to Computer Science to help advance the current state of Secondary Structure prediction.  Many methods have pushed the accuracy into the 80\% range.  However, considering the complexity of chemical reactions that proteins participate in, this is not nearly accurate enough.  In this paper, state of the art techniques from Natural Language Processing and Deep Learning are put to use to help advance the state of the art in the field, and improve the accuracy of secondary structure prediction.  Using techniques such as word embeddings and Encoder / Decoder networks, we hope to increase the Q8 accuracy of prediction, resulting in a new method for protein secondary structure prediction.
 
 \par
 Currently, the process for discerning protein structure, secondary or higher, is a complex, expensive, and time consuming process.  In the age of high throughput sequencing, this is a bottleneck.  Research in the field of structural biology depends on understanding the complex form of a protein to perform research on the metabolic pathways that the respective protein is a part of.  By improving secondary structure prediction methods, we give biologists the ability to produce working drafts of the protein that they are studying, which can be used until experimental methods can be used to correct and verify the protein structure.
@@ -184,9 +184,20 @@ Despite this constantly improving accuracy, there are limits to using algorithmi
 \section{Approach}
 
 \subsection{Encoder / Decoder Architecture}
-While Recurrent Neural Networks as discribed above are great for processing sequences, they are only able to output a single value for the entire sequence.  Th
+While Recurrent Neural Networks as described above are great for processing sequences, they are only able to output a single value for the entire sequence.  For example, in the case of sentiment analysis, a Recurrent Neural Network is able to process a sentence then provide a single number to rate the sentiment inherent to the sentence as either good or bad and how good or bad it is.  This is useful for many problems.  However, in the field of machine translation, more than one output is required.  In fact, an entire sequence is the output.  This lead to the creation of Encoder / Decoder, known more colloquially as Seq2Seq models, which allows translation from one sequence to another \cite{cho:2014}.  It consists of two Recurrent Neural Networks placed together, with one focused on learning the input sequence representation, called the Encoder, and the second RNN, called the Decoder, is focused on outputting a translation of the sequence.  This technique has been shown to be highly successful at Machine Translation, and is being used as the new translation algorithm for Google Translate \cite{wu:2016}.  This network is shown depicted below in Figure \ref{fg:enc_dec}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1.0]{encoder_decoder.pdf}
+	\vspace{1pc}
+	\caption{An Encoder / Decoder RNN a single layer for each \cite{olah:2015}}
+	\label{fg:enc_dec}
+\end{figure}
 
-I will be using a specific architecture called Encoder / Decoder, known more colloquially as Seq2Seq, which allows translation from one sequence to another \cite{cho:2014}.  It consists of two Recurrent Neural Networks placed together, with one focused on learning the input sequence representation, called the Encoder, and the second RNN, called the Decoder, is focused on outputting a translation of the sequence.  This technique has been shown to be highly successful at Machine Translation, and is being used as the new translation algorithm for Google Translate \cite{wu:2016}.  
+As we can see, Figure \ref{fg:enc_dec} depicts the Encoder processing the input data $X_{1}, X_{2}, X_{3}$ and learns the inherent meaning of the input.  From there, the Encoder feeds that information as a vector into the Decoder, where the Decoder is able to take the meaning of the sequence and translate it into the language that it has been trained for.  As it is a Recurrent Neural Network, it is trained by the Backpropagation through Time algorithm (BTT), but usually takes longer than a standard RNN, due to the fact that two networks that must be trained.
+
+\begin{equation}
+	\underset{\theta}{\max} \frac{1}{N} \sum_{i = 1}^{N} \log(P_{\theta}(y_{i} \vert x_{i}))
+\end{equation}
 
 \subsection{ProtVec}
 An inherent problem processing vocabulary sequences is information sparsity.  Any given sequence may only contain a very small subset of possible words, each of which posses a complex relationship with many other words.  To counter this, a technique known as word embedding tries to compress this relational information into a continuous vector space \cite{mikolov:2013}.  In a word embedding system, each word is represented by a high dimensional vector, where the vector represents its relationship to other words in the high dimensional vector space.  One of the unique properties of a good embedding is the fact that relationships between words can be represented through vector arithmetic.  For example, in a good embedding the equation $\vec{w}_{Berlin} - \vec{w}_{Germany} + \vec{w}_{France} \approx \vec{w}_{Paris}$ holds, showing that within a word embedding, there exists a linear relationships between each word.  For this project, we hope to capture the relationships between three-mers in the protein sequences.
@@ -316,7 +327,12 @@ The results were assembled by first training the models for a reasonable number 
 \subsection{Convolutional Model}
 
 \subsection{Computation Time}
-As mentioned earlier, to complete the training and inference of the networks, I had to run them on multiple machines, each with their own unique set of hardware specifications.  Therefore, any of the following time results must be viewed with this fact in mind.
+As mentioned earlier, to complete the training and inference of the networks, I had to run them on multiple machines, each with their own unique set of hardware specifications.  Therefore, any of the following time results must be viewed with this fact in mind.  However, provided below in the table are the number of training steps executed per second and how many GPU's available for training the model.
+
+
+\par
+As a small note, I found the models trained on Amazon Web Services to be a bit slower for some unknown reason.  It seemed as if the AWS instances had more lag in comparison to the Google Cloud Instance.  I was unable to debug the problem, and as such the amount of time that the large model could train for was reduced.  
+
 \subsection{Summary}
 
 \section{Conclusion}

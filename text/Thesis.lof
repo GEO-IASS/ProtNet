@@ -2,6 +2,7 @@
 \contentsline {figure}{\numberline {2}{\ignorespaces A graphical breakdown of the four levels of protein structure \cite {wiki:2008}\relax }}{8}{figure.caption.3}
 \contentsline {figure}{\numberline {3}{\ignorespaces An Unrolled RNN \cite {olah:2015}\relax }}{11}{figure.caption.4}
 \contentsline {figure}{\numberline {4}{\ignorespaces An LSTM Cell \cite {olah:2015}\relax }}{12}{figure.caption.5}
-\contentsline {figure}{\numberline {5}{\ignorespaces Attention Mechanism in an Encoder / Decoder network \cite {olah:2016}\relax }}{19}{figure.caption.6}
-\contentsline {figure}{\numberline {6}{\ignorespaces Computational Graph of tf-seq2seq model\relax }}{25}{figure.caption.8}
-\contentsline {figure}{\numberline {7}{\ignorespaces Computational Graph of small model\relax }}{36}{figure.caption.9}
+\contentsline {figure}{\numberline {5}{\ignorespaces An Encoder / Decoder RNN a single layer for each \cite {olah:2015}\relax }}{15}{figure.caption.6}
+\contentsline {figure}{\numberline {6}{\ignorespaces Attention Mechanism in an Encoder / Decoder network \cite {olah:2016}\relax }}{20}{figure.caption.7}
+\contentsline {figure}{\numberline {7}{\ignorespaces Computational Graph of tf-seq2seq model\relax }}{26}{figure.caption.9}
+\contentsline {figure}{\numberline {8}{\ignorespaces Computational Graph of small model\relax }}{37}{figure.caption.10}
