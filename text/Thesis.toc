@@ -17,11 +17,10 @@
 \contentsline {subsection}{\numberline {4.7}Computing Resources}{24}{subsection.4.7}
 \contentsline {section}{\numberline {5}Results}{25}{section.5}
 \contentsline {subsection}{\numberline {5.1}Small Model}{26}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Medium Model}{26}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Large Model}{26}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}Convolutional Model}{26}{subsection.5.4}
-\contentsline {subsection}{\numberline {5.5}Computation Time}{26}{subsection.5.5}
-\contentsline {subsection}{\numberline {5.6}Summary}{27}{subsection.5.6}
-\contentsline {section}{\numberline {6}Conclusion}{27}{section.6}
-\contentsline {section}{\numberline {7}References}{29}{section.7}
-\contentsline {section}{\numberline {8}Appendix}{33}{section.8}
+\contentsline {subsection}{\numberline {5.2}Medium Model}{28}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Large Model}{28}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Computation Time}{28}{subsection.5.4}
+\contentsline {subsection}{\numberline {5.5}Summary}{29}{subsection.5.5}
+\contentsline {section}{\numberline {6}Conclusion}{29}{section.6}
+\contentsline {section}{\numberline {7}References}{32}{section.7}
+\contentsline {section}{\numberline {8}Appendix}{36}{section.8}

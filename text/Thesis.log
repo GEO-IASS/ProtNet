@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.12)  4 MAY 2017 22:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.19)  5 MAY 2017 07:31
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
 **Thesis.tex
 (./Thesis.tex
 LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+Babel <3.9q> and hyphenation patterns for 12 language(s) loaded.
 (./jpaper.cls
 Document Class: jpaper 2012/08/02 ISCA Submission template
 (./etoolbox.sty
@@ -1515,7 +1515,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 26.
 
-<images/ShieldColor.pdf, id=112, 345.4261pt x 440.67152pt>
+<images/ShieldColor.pdf, id=108, 345.4261pt x 440.67152pt>
 File: images/ShieldColor.pdf Graphic file (type pdf)
 
 <use images/ShieldColor.pdf>
@@ -1541,7 +1541,7 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 \openout9 = `Thesis.lol'.
 
  [4] [5]
-<images/20-Common-Amino-Acids-v2.pdf, id=203, 1195.01462pt x 845.0471pt>
+<images/20-Common-Amino-Acids-v2.pdf, id=202, 1195.01462pt x 845.0471pt>
 File: images/20-Common-Amino-Acids-v2.pdf Graphic file (type pdf)
 
 <use images/20-Common-Amino-Acids-v2.pdf>
@@ -1568,7 +1568,7 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 9.99591pt on input line 89.
  [6]
-<images/ProteinStructure.pdf, id=212, 348.33978pt x 607.99467pt>
+<images/ProteinStructure.pdf, id=211, 348.33978pt x 607.99467pt>
 File: images/ProteinStructure.pdf Graphic file (type pdf)
 
 <use images/ProteinStructure.pdf>
@@ -1576,35 +1576,35 @@ Package pdftex.def Info: images/ProteinStructure.pdf used on input line 100.
 (pdftex.def)             Requested size: 215.96841pt x 376.9528pt.
  [7 <./images/20-Common-Amino-Acids-v2.pdf>]
 [8 <./images/ProteinStructure.pdf>] [9]
-<images/unrolledRNN.pdf, id=1094, 511.8202pt x 134.53075pt>
+<images/unrolledRNN.pdf, id=1093, 511.8202pt x 134.53075pt>
 File: images/unrolledRNN.pdf Graphic file (type pdf)
 
 <use images/unrolledRNN.pdf>
 Package pdftex.def Info: images/unrolledRNN.pdf used on input line 131.
 (pdftex.def)             Requested size: 460.63393pt x 121.07652pt.
  [10]
-<images/LSTM.pdf, id=1108, 429.12932pt x 283.91388pt>
+<images/LSTM.pdf, id=1107, 429.12932pt x 283.91388pt>
 File: images/LSTM.pdf Graphic file (type pdf)
  <use images/LSTM.pdf>
 Package pdftex.def Info: images/LSTM.pdf used on input line 143.
 (pdftex.def)             Requested size: 321.84619pt x 212.93488pt.
 
 [11 <./images/unrolledRNN.pdf>] [12 <./images/LSTM.pdf>] [13] [14]
-<images/encoder_decoder.pdf, id=1174, 451.94368pt x 165.0923pt>
+<images/encoder_decoder.pdf, id=1173, 451.94368pt x 165.0923pt>
 File: images/encoder_decoder.pdf Graphic file (type pdf)
 
 <use images/encoder_decoder.pdf>
 Package pdftex.def Info: images/encoder_decoder.pdf used on input line 190.
 (pdftex.def)             Requested size: 451.94257pt x 165.09189pt.
  [15 <./images/encoder_decoder.pdf>] [16]
-[17] [18] <images/attentionRNN.pdf, id=1228, 614.295pt x 400.49625pt>
+[17] [18] <images/attentionRNN.pdf, id=1227, 614.295pt x 400.49625pt>
 File: images/attentionRNN.pdf Graphic file (type pdf)
 
 <use images/attentionRNN.pdf>
 Package pdftex.def Info: images/attentionRNN.pdf used on input line 254.
 (pdftex.def)             Requested size: 448.43161pt x 292.35983pt.
  [19] [20 <./images/attentionRNN.pdf>] [21]
-[22] [23] [24] <images/example_graph.png, id=1917, 1355.0625pt x 884.30376pt>
+[22] [23] [24] <images/example_graph.png, id=1915, 1355.0625pt x 884.30376pt>
 File: images/example_graph.png Graphic file (type png)
 
 <use images/example_graph.png>
@@ -1615,8 +1615,21 @@ Overfull \hbox (4.52397pt too wide) in paragraph at lines 315--316
  [][] 
  []
 
-[25] [26 <./images/example_graph.png>] [27] [28] (./Thesis.bbl [29] [30]
-[31]) [32]
+[25] <images/Small_Loss.pdf, id=1922, 562.1pt x 361.35pt>
+File: images/Small_Loss.pdf Graphic file (type pdf)
+
+<use images/Small_Loss.pdf>
+Package pdftex.def Info: images/Small_Loss.pdf used on input line 326.
+(pdftex.def)             Requested size: 421.57397pt x 271.01184pt.
+ [26 <./images/example_graph.png>]
+<images/Large_Loss.pdf, id=1928, 562.1pt x 361.35pt>
+File: images/Large_Loss.pdf Graphic file (type pdf)
+
+<use images/Large_Loss.pdf>
+Package pdftex.def Info: images/Large_Loss.pdf used on input line 337.
+(pdftex.def)             Requested size: 421.57397pt x 271.01184pt.
+ [27 <./images/Small_Loss.pdf>] [28 <./images/Large_Loss.pdf>] [29] [30] [31] (
+./Thesis.bbl [32] [33] [34]) [35]
 (./_minted-Thesis/4364F68D66C3600826B18B68EA6047198162D90B5B185488708ADCDEF45E6
 07B.pygtex
 Package microtype Info: Loading generic settings for font family
@@ -1629,37 +1642,37 @@ LaTeX Font Info:    Font shape `T1/pcrs/m/sl' will be
 (Font)              scaled to size 10.5pt on input line 2.
 )
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
-t line 357.
- [33]
+t line 387.
+ [36]
 (./_minted-Thesis/A406E53D3F19158B7A6801212E8784D40ADA6D9F74C452F1D171DD7A170AA
-F5D.pygtex) [34]
+F5D.pygtex) [37]
 (./_minted-Thesis/75843F418E9B6E97FB526EAB28A064FCB20C856AE2F81862CC6F75E67CF34
-987.pygtex) [35]
+987.pygtex) [38]
 (./_minted-Thesis/44FFB78EE93CAEA810E2514734247478BE83E4E380325B4AC2FF1B975685D
-D52.pygtex) [36]
-<images/small_model_full_graph.png, id=2010, 4711.6025pt x 2833.58624pt>
+D52.pygtex) [39]
+<images/small_model_full_graph.png, id=2049, 4711.6025pt x 2833.58624pt>
 File: images/small_model_full_graph.png Graphic file (type png)
 
 <use images/small_model_full_graph.png>
-Package pdftex.def Info: images/small_model_full_graph.png used on input line 3
-83.
+Package pdftex.def Info: images/small_model_full_graph.png used on input line 4
+13.
 (pdftex.def)             Requested size: 612.52983pt x 368.37915pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 388.
- [37 <./images/small_model_full_graph.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 388.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 418.
+ [40 <./images/small_model_full_graph.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 418.
  (./Thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 388.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 388.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 418.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 418.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: A673DABCA54156161505C61DF40E44F0;3256.
+(rerunfilecheck)             Checksum: 422C9942516A9B229E46ADB67A42E69D;3100.
  ) 
 Here is how much of TeX's memory you used:
- 26892 strings out of 493029
- 477878 string characters out of 6136234
- 574266 words of memory out of 5000000
- 29722 multiletter control sequences out of 15000+600000
+ 26910 strings out of 494497
+ 478209 string characters out of 6172400
+ 570602 words of memory out of 5000000
+ 29614 multiletter control sequences out of 15000+600000
  68543 words of font info for 241 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
+ 264 hyphenation exceptions out of 8191
  48i,12n,45p,10358b,925s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
@@ -1674,10 +1687,10 @@ e/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/ti
 mes/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on Thesis.pdf (37 pages, 1373059 bytes).
+Output written on Thesis.pdf (40 pages, 1392122 bytes).
 PDF statistics:
- 2091 PDF objects out of 2487 (max. 8388607)
- 1578 compressed objects within 16 object streams
- 125 named destinations out of 1000 (max. 500000)
- 38150 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 2131 PDF objects out of 2487 (max. 8388607)
+ 1606 compressed objects within 17 object streams
+ 130 named destinations out of 1000 (max. 500000)
+ 38152 words of extra memory for PDF output out of 42996 (max. 10000000)
 

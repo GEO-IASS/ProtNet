@@ -5,4 +5,6 @@
 \contentsline {figure}{\numberline {5}{\ignorespaces An Encoder / Decoder RNN a single layer for each \cite {olah:2015}\relax }}{15}{figure.caption.6}
 \contentsline {figure}{\numberline {6}{\ignorespaces Attention Mechanism in an Encoder / Decoder network \cite {olah:2016}\relax }}{20}{figure.caption.7}
 \contentsline {figure}{\numberline {7}{\ignorespaces Computational Graph of tf-seq2seq model\relax }}{26}{figure.caption.9}
-\contentsline {figure}{\numberline {8}{\ignorespaces Computational Graph of small model\relax }}{37}{figure.caption.10}
+\contentsline {figure}{\numberline {8}{\ignorespaces Training Loss Curve for Large Model\relax }}{27}{figure.caption.10}
+\contentsline {figure}{\numberline {9}{\ignorespaces Training Loss Curve for Large Model\relax }}{28}{figure.caption.11}
+\contentsline {figure}{\numberline {10}{\ignorespaces Computational Graph of small model\relax }}{40}{figure.caption.13}

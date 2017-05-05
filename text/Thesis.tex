@@ -193,11 +193,14 @@ While Recurrent Neural Networks as described above are great for processing sequ
 	\label{fg:enc_dec}
 \end{figure}
 
-As we can see, Figure \ref{fg:enc_dec} depicts the Encoder processing the input data $X_{1}, X_{2}, X_{3}$ and learns the inherent meaning of the input.  From there, the Encoder feeds that information as a vector into the Decoder, where the Decoder is able to take the meaning of the sequence and translate it into the language that it has been trained for.  As it is a Recurrent Neural Network, it is trained by the Backpropagation through Time algorithm (BTT), but usually takes longer than a standard RNN, due to the fact that two networks that must be trained.
+As we can see, Figure \ref{fg:enc_dec} depicts the Encoder processing the input data $X_{1}, X_{2}, X_{3}$ and learns the inherent meaning of the input.  From there, the Encoder feeds that information as a vector into the Decoder, where the Decoder is able to take the meaning of the sequence and translate it into the language that it has been trained for.  As it is a Recurrent Neural Network, it is trained by the Backpropagation through Time algorithm (BTT), but usually takes longer than a standard RNN, due to the fact that two networks that must be trained.  For the problem of translation, we have the Equation \ref{eq:ed_loss} as the loss function for the network.
 
-\begin{equation}
+\begin{equation} \label{eq:ed_loss}
 	\underset{\theta}{\max} \frac{1}{N} \sum_{i = 1}^{N} \log(P_{\theta}(y_{i} \vert x_{i}))
 \end{equation}
+
+With this loss function, we can see that for the model parameters $\theta$, we are trying to optimized the log loss probability that $y_{i}$ will appear given $x_{i}$ for all $i$.  This over all means that the neural network will learn to mimic the 
+
 
 \subsection{ProtVec}
 An inherent problem processing vocabulary sequences is information sparsity.  Any given sequence may only contain a very small subset of possible words, each of which posses a complex relationship with many other words.  To counter this, a technique known as word embedding tries to compress this relational information into a continuous vector space \cite{mikolov:2013}.  In a word embedding system, each word is represented by a high dimensional vector, where the vector represents its relationship to other words in the high dimensional vector space.  One of the unique properties of a good embedding is the fact that relationships between words can be represented through vector arithmetic.  For example, in a good embedding the equation $\vec{w}_{Berlin} - \vec{w}_{Germany} + \vec{w}_{France} \approx \vec{w}_{Paris}$ holds, showing that within a word embedding, there exists a linear relationships between each word.  For this project, we hope to capture the relationships between three-mers in the protein sequences.
@@ -233,7 +236,7 @@ This new error function approximates the logarithmic softmax output.  The only i
 \section{Implementation}
 
 \subsection{Models}
-For this study, we test four models, a small model, a medium model, a large model, and a small convolutional model.  The first three models are pure Encoder / Decoder models and are the core of this study.  Each of these models are based off of the example models provided in the tf-seq2seq source code.  The small convolutional model was included as a small test to test the effectiveness of convolution in this specific problem.  For all models, we will use an embedding size of 128 for all models, as we do not need as large of a word embedding as networks used for language translation.  Moreover, we are using LSTM based cells in all of the Decoder networks and the first three Encoder networks, while the covolutional based Encoder uses only convolutional cells.
+For this study, we test four models, a small model, a medium model, and a large model.  The first three models are pure Encoder / Decoder models and are the core of this study.  Each of these models are based off of the example models provided in the tf-seq2seq source code. For all models, we will use an embedding size of 128 for all models, as we do not need as large of a word embedding as networks used for language translation.  Moreover, we are using LSTM based cells in all of the Decoder networks and the first three Encoder networks.
 
 \par
 The small model was built with the primary motivation being to show basic evidence for the success of an LSTM based Encoder / Decoder system on the problem.  It consists of one Encoder layer and one Decoder layer.  This model will be very easy to train, and will only take a few hours.
@@ -242,10 +245,7 @@ The small model was built with the primary motivation being to show basic eviden
 The medium model attempts to deepen the Decoder network to increase accuracy.  I consists of one Encoder layer and two Decoder layers.  This model will take a bit longer to train, and will probably take a whole day to train on the compute cluster. 
 
 \par
-The large model increases both the Encoder and Decoder depth.  It consists of two layers in the Encoder and four layers in the Decoder.  I expect to get the highest accuracy on this model, as it is the most complex.  However, this accuracy comes at the cost of a long training time. This model will take between one to three days to train.
-
-\par
-The convolutional model is the most unique of the four models, as it is the only model that strays from the standard LSTM based Encoder architecture.  Convolution is a complex mathematical operation that involves two functions.  In the case of neural networks, we treat the input as one of the functions.  The other input, called the kernel, is learned during training.  The benefit to using convolution in a neural network is that compared to more traditional neural networks, the number of learned parameters per layer, making the network more memory efficient and easier to train.  Convolutional based Encoder networks were first introduced in 2016 as a way to bring the benefits to convolution to Encoder / Decoder networks \cite{gehring:2016}.  The Encoder has a total of six convolutional layers, each with a kernel size of three.  The Decoder consists of one LSTM layer.
+The large model increases both the Encoder and Decoder depth.  It consists of two layers in the Encoder and four layers in the Decoder.  I expect to get the highest accuracy on this model, as it is the most complex.  However, this accuracy comes at the cost of a long training time. This model will take between one to three days to train for 5,000,000 steps.
 
 \subsection{Attention Mechanism}
 A common mechanism that is used to enhance the predictive power of Encoder / Decoder architectures is the use of a technique called Attention.  First introduced by Dzmitry Bahdanau in 2014, this allows Encoder / Decoder networks to focus individual outputs from the Decoder on the pertinent inputs to the encoder \cite{bahdanau:2014}.  When translating a sentence, the translator focuses mostly on the current word and slightly on a few surrounding words, attention mechanisms attempt to mimic this by deemphasizing the output of Encoder cells that are farther away from the current word being translated.  This is accomplished by passing a vector, called the query vector, from the Decoder to the encoder.  Then we take the dot product of the query vector and the output vectors from the Encoder network, and put it through a softmax layer.  The output of the softmax is called the attention distribution, and decides which parts of the input are the most pertinent to the current decoder state.  From here, each scalar value is multiplied by their respective Encoder vector and summed together to get the final input to the the Decoder cell.  This process is depicted below, in Figure \ref{fg:attn}.  Note how for the Decoder cell certain Encoder vectors are weighted much more strongly.
@@ -299,7 +299,7 @@ The data for training and testing these models comes from the Protein Data Bank 
 \end{table}
 
 \par
-I processed this data by simply parsing the FASTA file and removing the excess information included, such as sequence names.  From this point, I split the sequences into their source and target sequences and placed them into two files, each in Parallel Text Format.  As in any standard machine learning algorithm, I created two sets of data, testing and training sets.  The testing and training sets were split randomly after parsing out the sequence names and delimiting marks.  The test dataset is approximately 10\% the size of the training dataset.  I chose not to build a validation dataset, as the initial dataset is already on the smaller end of those used to train neural networks.  The longest sequence in the dataset is  amino acids long.  Moreover, there are a total of 
+I processed this data by simply parsing the FASTA file and removing the excess information included, such as sequence names.  From this point, I split the sequences into their source and target sequences and placed them into two files, each in Parallel Text Format.  As in any standard machine learning algorithm, I created two sets of data, testing and training sets.  The testing and training sets were split randomly after parsing out the sequence names and delimiting marks.  The test dataset is approximately 10\% the size of the training dataset.  I chose not to build a validation dataset, as the initial dataset is already on the smaller end of those used to train neural networks.  The longest sequence in the dataset is 1739 amino acids long.
 
 \subsection{Computing Resources}
 Neural networks are inherently computationally intensive to train, as there is no closed form equation to optimize the weight matrices and other hidden variables.  On simple desktop machines, state of the art neural networks would take months to train, and would probably strain the memory of the machine.  That is where the use of Graphics Processing Units (GPUs) are essential.  Due to their vector heavy design, they are able to do large amounts of vector and matrix math quickly, making them the perfect tool for accelerating neural network training and inference.
@@ -319,26 +319,56 @@ The results were assembled by first training the models for a reasonable number 
 
 
 \subsection{Small Model}
+The small model was quite easy to train, and 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.75]{Small_Loss.pdf}
+	\caption{Training Loss Curve for Large Model}
+	\label{fg:small_loss}
+\end{figure}
 
 \subsection{Medium Model}
 
 \subsection{Large Model}
 
-\subsection{Convolutional Model}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.75]{Large_Loss.pdf}
+	\caption{Training Loss Curve for Large Model}
+	\label{fg:large_loss}
+\end{figure}
 
 \subsection{Computation Time}
 As mentioned earlier, to complete the training and inference of the networks, I had to run them on multiple machines, each with their own unique set of hardware specifications.  Therefore, any of the following time results must be viewed with this fact in mind.  However, provided below in the table are the number of training steps executed per second and how many GPU's available for training the model.
 
+\begin{table}[H]
+	\centering
+	\caption{Computation Time for the three models}
+	\label{tb:comp_time}
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline
+		Model  & Service & \# GPUs & Avg. Steps / Sec & Steps / (GPU * Sec) \\ \hline
+		Small  & AWS     & 16      & 3.3              & 0.20625             \\ \hline
+		Medium & Google  & 8       & 0.08             & 0.01                \\ \hline
+		Large  & AWS     & 16      & 0.32             & 0.02                \\ \hline
+	\end{tabular}
+\end{table}
 
 \par
-As a small note, I found the models trained on Amazon Web Services to be a bit slower for some unknown reason.  It seemed as if the AWS instances had more lag in comparison to the Google Cloud Instance.  I was unable to debug the problem, and as such the amount of time that the large model could train for was reduced.  
+As a small note, I found the models trained on Google Compute Engine to be significantly slower for some unknown reason.  It seemed as if the Google instances had more lag in comparison to the Amazon Web Services instances.  I was unable to debug the problem, and as such the amount of time that the medium model could train for was reduced.  This is highly unexpected, since the tf-seq2seq code advertised a training time of 2-3 days for the large model, on 8 Nvidia K80 GPUs \cite{britz:2017}.  Given that they considered 5,000,000 training steps fully trained, and that the medium model is half the size of the large model, I find these training time claims to be highly inflated.
 
 \subsection{Summary}
+Although I did not train these models to the 5,000,000 training steps as done in the tf-seq2seq tutorial, I believe that the amount of training done was sufficient to extrapolate data from the models.  However, due to the flexibility of the tf-seq2seq software, the models can be trained further for any number of training steps, given the running files.
 
 \section{Conclusion}
 
 \par
 For future work, I would like to investigate the incorporation of multiple alignment data in the input to the network.  Integrating multiple alignment data has been shown to be critical in improving the accuracy of secondary structure prediction.  It was originally suggested that I use this as my main architecture for this study; however, I wanted to focus on the ability for this type of network architecture to inference using only the input sequence.  One of the main difficulties is that it would require protein BLAST (BLASTP) to be packaged offline, as the network would prediction code would need to call BLASTP for every new protein sequence.  However, once this is done, one would have to change the network architecture to accept this extra alignment information.  I propose the following modifications to allow for this.  First, instead of using the embedding vectors on three-mers in the amino acid sequence, we use the embedding vectors to represent a single column of a protein alignment.  Consequently, this would mean that the number of embedding vectors to represent the entire sequence would be equal to the length of the amino acid sequence.  This would give the extra benefit of allowing the network to perform conformation prediction for individual amino acids instead of individual tri-mers.  One of the pitfalls, however, is that it will accept only a constant number of alignment proteins for a given input protein.  Furthermore, total vocabulary size of the embedding would increase significantly, as it must now include alignment symbols in each embedding "word".
+
+\par
+A convolutional model would be worth trying, as it strays from the standard LSTM based Encoder architecture..  Convolution is a complex mathematical operation that involves two functions.  In the case of neural networks, we treat the input as one of the functions.  The other input, called the kernel, is learned during training.  The benefit to using convolution in a neural network is that compared to more traditional neural networks, the number of learned parameters per layer, making the network more memory efficient and easier to train.  Convolutional based Encoder networks were first introduced in 2016 as a way to bring the benefits to convolution to Encoder / Decoder networks \cite{gehring:2016}.  A simple starter model to test this concept would be one where the Encoder would have a total of six convolutional layers, each with a kernel size of three.  Moreover, the Decoder would consist consists of one LSTM layer.
+
 
 \par
 One of the key difficulties training machine learning algorithms on secondary structure data is the comparably small size of the dataset in comparison to other tasks.  A simple way to compare this is by looking at the raw file size of the dataset.  While the entire PDB secondary structure dataset can be fit in a single \SI{196.7}{\mega\byte} FASTA file, where as standard text corpora range from as small as \SI{580}{\mega\byte} to as large as \SI{2.3}{\giga\byte}.  Even compared to the small text corpus, the secondary structure dataset is $\frac{1}{3}$ the size.  This might hinder the neural network, as it has to generalize over a smaller dataset.  In most cases, the easiest way to solve this problem is to gather more data.  As mentioned earlier, this is not feasible, due to the complex process of experimentally discovering the conformation of a protein.  A possible method to overcome this is a recent technique called generative adversarial networks, or adversarial learning.  First introduced by Ian Goodfellow in 2014, this technique uses two neural networks playing against each other in a zero-sum game \cite{goodfellow:2014}.  One network focuses on classification while the other tries to generate new datapoints.  Through this competition, both networks are able to learn the data not only through the provided training dataset, but through new data created by the generative network, given to the discriminative neural network.  The new data provided by the generative network is designed to maximize the probability that the discriminative network will mis-categorize the data.  This competition causes the generative network to provide harder and harder data to the discriminative network, which helps to increase the training accuracy of the discriminative network.  What makes this technique so enticing to the problem of secondary structure prediction is the generative capabilities of the network.  Because the network is able to generate example datapoints, we are able to train the network on a much larger, practical dataset.  One of the difficulties in this approach is the fact that adversarial networks built so far have been found to perform poorly on text-based problems.  Therefore, this would be a study to be performed once the network architecture improves.
