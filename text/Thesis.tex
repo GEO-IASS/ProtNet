@@ -236,7 +236,7 @@ However, this error function becomes intractable for large vocabularies, requiri
 	\end{gather}
 \end{subequations}
 
-This new error function approximates the logarithmic softmax output.  The only impediment to this is the requirement of the noise probability distribution, $P_{n}$.  This must be manually calculated by 
+This new error function approximates the logarithmic softmax output.  The only impediment to this is the requirement of the noise probability distribution, $P_{n}$.  This distribution gives the model the probability that two words will appear together just through sample noise, allowing the model to discriminated between meaningful and non-meaningful word adjacencies.
 
 \section{Implementation}
 
