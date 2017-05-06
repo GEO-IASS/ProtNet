@@ -199,7 +199,13 @@ As we can see, Figure \ref{fg:enc_dec} depicts the Encoder processing the input 
 	\underset{\theta}{\max} \frac{1}{N} \sum_{i = 1}^{N} \log(P_{\theta}(y_{i} \vert x_{i}))
 \end{equation}
 
-With this loss function, we can see that for the model parameters $\theta$, we are trying to optimized the log loss probability that $y_{i}$ will appear given $x_{i}$ for all $i$.  This over all means that the neural network will learn to mimic the 
+With this loss function, we can see that for the model parameters $\theta$, we are trying to optimized the log loss probability that $y_{i}$ will appear given $x_{i}$ for all $i$.  Overall, this means that the neural network will learn to mimic the translated output, given the input.
+
+\par
+For this study, we will be using a modification of the basic Encoder / Decoder algorithm.  One of the problems with a standard Recurrent Neural Network is the fact that it can take past context into account, but not future context.  Future information can be just as important as past information, especially in the case of secondary structure, where all of the surrounding amino acids affect the structure of a given amino acid.  To allow for RNNs to account for this future context, Bidirectional RNNs were created.  First proposed in 1997, the network incorporates future context by doubling the number of hidden states in each RNN / LSTM cell, with half being for past conxtext and the other half being for future context \cite{schuster:1997}.  This means that an individual RNN / LSTM cell recives a forward and a backward hidden state, increasing the accuracy of the prediction.  This technique has been used successfully in protein secondary structure prediction algorithms, and have been found to do better than state of the art methods in 2005 \cite{pollastri:2005}.  This type of network is used within the Encoder of the Encoder / Decoder model.
+
+\par
+Given this recent architecture, I believe it will prove successful at predicting the secondary structure of proteins and rank very high in terms of accuracy of prediction.
 
 
 \subsection{ProtVec}
@@ -236,7 +242,7 @@ This new error function approximates the logarithmic softmax output.  The only i
 \section{Implementation}
 
 \subsection{Models}
-For this study, we test four models, a small model, a medium model, and a large model.  The first three models are pure Encoder / Decoder models and are the core of this study.  Each of these models are based off of the example models provided in the tf-seq2seq source code. For all models, we will use an embedding size of 128 for all models, as we do not need as large of a word embedding as networks used for language translation.  Moreover, we are using LSTM based cells in all of the Decoder networks and the first three Encoder networks.
+For this study, we test three models, a small model, a medium model, and a large model.  The first three models are pure Encoder / Decoder models and are the core of this study.  Each of these models are based off of the example models provided in the tf-seq2seq source code. For all models, we will use an embedding size of 128 for all models, as we do not need as large of a word embedding as networks used for language translation.  Moreover, we are using LSTM based cells in all of the Decoder networks and the first three Encoder networks.  All model configuration files can be found in the Appendix section of this paper.  The files contain a few other parameters that are not mentioned in this paper, but are taken from the configuration files that were included in the tf-seq2seq package.
 
 \par
 The small model was built with the primary motivation being to show basic evidence for the success of an LSTM based Encoder / Decoder system on the problem.  It consists of one Encoder layer and one Decoder layer.  This model will be very easy to train, and will only take a few hours.
@@ -247,6 +253,27 @@ The medium model attempts to deepen the Decoder network to increase accuracy.  I
 \par
 The large model increases both the Encoder and Decoder depth.  It consists of two layers in the Encoder and four layers in the Decoder.  I expect to get the highest accuracy on this model, as it is the most complex.  However, this accuracy comes at the cost of a long training time. This model will take between one to three days to train for 5,000,000 steps.
 
+\par
+Moreover, there are multiple ways to test the accuracy of a secondary structure prediction algorithm.  The two most popular are Q3 and Q8 accuracy.  Simply put, these two accuracy measures simply tally the percent amino acids the algorithm correctly predicted.  Now Q3 and Q8 each use different labeling classes, with Q3 using the standard three secondary structure classes, $\alpha$-helix, $\beta$-sheet, and coil.  Q8 on the other hand, uses eight individual classes, which are subclasses of the Q3 structure types.  The Q8 classes are described in the Table \ref{tb:q8} below.
+
+\begin{table}[H]
+	\centering
+	\caption{Q8 Classes as defined by PDB \cite{berman:2000}}
+	\label{tb:q8}
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Structure Letter} & \textbf{Structure Type}                               \\ \hline
+		H                & $\alpha$-Helix                               \\ \hline
+		B                & Residue in isolated $\beta$-bridge           \\ \hline
+		E                & Extended Strand, participates in $\beta$-ladder \\ \hline
+		G                & 3-Helix ($\frac{3}{10}$ Helix)               \\ \hline
+		I                & 5-Helix ($\pi$ Helix)                        \\ \hline
+		T                & Hydrogen Bonded Turn                         \\ \hline
+		S                & Bend                                         \\ \hline
+		C                & Coil                                         \\ \hline
+	\end{tabular}
+\end{table}
+
 \subsection{Attention Mechanism}
 A common mechanism that is used to enhance the predictive power of Encoder / Decoder architectures is the use of a technique called Attention.  First introduced by Dzmitry Bahdanau in 2014, this allows Encoder / Decoder networks to focus individual outputs from the Decoder on the pertinent inputs to the encoder \cite{bahdanau:2014}.  When translating a sentence, the translator focuses mostly on the current word and slightly on a few surrounding words, attention mechanisms attempt to mimic this by deemphasizing the output of Encoder cells that are farther away from the current word being translated.  This is accomplished by passing a vector, called the query vector, from the Decoder to the encoder.  Then we take the dot product of the query vector and the output vectors from the Encoder network, and put it through a softmax layer.  The output of the softmax is called the attention distribution, and decides which parts of the input are the most pertinent to the current decoder state.  From here, each scalar value is multiplied by their respective Encoder vector and summed together to get the final input to the the Decoder cell.  This process is depicted below, in Figure \ref{fg:attn}.  Note how for the Decoder cell certain Encoder vectors are weighted much more strongly.
 \begin{figure}[H]
@@ -256,7 +283,7 @@ A common mechanism that is used to enhance the predictive power of Encoder / Dec
 	\label{fg:attn}
 \end{figure}
 
-The addition of the attention mechanism has the benefit of allowing each Encoder state to output a vector of information for the Decoder instead of a single vector from the final output of the Encoder.  This increases the amount of information that is given to the decoder, allowing it to make better predictions.  In the four models we will be testing, the attention vector will be of length 128.
+The addition of the attention mechanism has the benefit of allowing each Encoder state to output a vector of information for the Decoder instead of a single vector from the final output of the Encoder.  This increases the amount of information that is given to the decoder, allowing it to make better predictions.  In the three models we will be testing, the attention vector will be of length 128.
 
 \subsection{TensorFlow}
 One of the keys to implementing this project has been the Tensorflow library \cite{tensorflow:2015}.  Released by Google in 2015, the library focuses on providing an all inclusive neural network library.  The user is given many primitive operations to construct the network; this network must be defined before beginning the training phase, so that the library is able to pre-calculate the derivatives and compile the math expressions required for backpropagation through the network.  By doing this, the library is able to optimize the computation of both forward and backwards passes through the network.  As with every other major neural network library, it includes CUDA support, allowing GPU acceleration to greatly reduce training time.  One of the more unique features of the library is its new XLA accelerator.  XLA is a Just-in-Time (JIT) compiler, designed specifically for compiling high level graph operations together, so as to speed up both the training and inference times of the network.  Furthermore, all training data can be recorded, and easily accessed through the Tensorboard interface.  From here, we are easily able to export all scalar data (learning rates, gradient magnitude, and network cell parameters) via a CSV.  Instead of installing the vanilla TensorFlow package available from the Python package manager, I chose to compile TensorFlow from source, gaining me extra vector extensions and the XLA accelerator; these features will help to reduce training and inference time.  For this project, we will be using version r1.0, released on February 15, 2017.
@@ -277,7 +304,7 @@ In the case of this project, we will be using dropout on the medium and large mo
 As explained earlier, neural networks are trained through stochastic gradient descent, minimizing the error function for the given training dataset.  On most modern neural networks, pure stochastic gradient descent is not powerful enough and can easily get trapped in saddle points or deep valley in the topology of the error function.  To prevent this, we modify SGD to prevent the algorithm from becoming trapped in these topological features.  The most well known modification, called momentum optimization, treats the algorithm as if it were a physical system \cite{sutskever:2013}.  It uses the gradient as a force, while having a momentum parameter, which holds a cumulative sum of all previous gradient updates, much like momentum in classical mechanics.  In the case of the algorithm falling into a large valley or saddle point, momentum allows the algorithm to escape these false minima by slowly growing the magnitude of the momentum vector, until it is able to escape the false minima.
 
 \par
-For this study, I will be using the Adam optimization algorithm.  This algorithm combines the power of momentum based optimization with dimensional scaling, a technique that changes the learning rate for each dimension, independently of all other dimensions \cite{kingma:2014}.  These two improvements to stochastic gradient descent help to make Adam one of the most popular optimization algorithms for training neural networks.  In the algorithm, there are four hyper-parameters: $\beta_{1}$, $\beta_{2}$, $\epsilon$, and $\eta$.  The two $\beta$ parameters both act as decay rates for the momentum factors.  The $\eta$ parameter is the actual learning rate of the optimizer, which affects the magnitude the weight updates in the algorithm.  The $\epsilon$ parameter is not clearly described, but has been called a fuzz factor.  If we examine the expression it appears in $\theta_{t} = \theta_{t - 1} - \frac{\hat{m}_{t}}{\sqrt{\hat{v}_{t}} + \epsilon}$, where $\hat{m}_{t}$ and $\hat{v}_{t}$ are the two momentum parameters and $\theta$ is the parameter/s being optimized, we can see that $\epsilon$ affects the parameter which the authors call the, "Signal to Noise Ratio".  This means that the $\epsilon$ parameter affects how noise associated with gradient of a complex function, then goes on to update the parameter.  The values we will be using for them are the default values in TensorFlow, which are the recommended values in the original paper.  For the two $\beta$ values, we have the following settings $\beta_{1} = 0.9$ and $\beta_{2} = 0.999$, implying almost no momentum decay.  For $\epsilon$, we use two values; the value of $\epsilon = 10^{-8}$ for the convolutional version, and $\epsilon = 0.8 \times 10^{-6}$ for all other models.  For the learning rate, we are using the default value prescribed by the tf-seq2seq package, $\eta = 10^{-4}$.
+For this study, I will be using the Adam optimization algorithm.  This algorithm combines the power of momentum based optimization with dimensional scaling, a technique that changes the learning rate for each dimension, independently of all other dimensions \cite{kingma:2014}.  These two improvements to stochastic gradient descent help to make Adam one of the most popular optimization algorithms for training neural networks.  In the algorithm, there are four hyper-parameters: $\beta_{1}$, $\beta_{2}$, $\epsilon$, and $\eta$.  The two $\beta$ parameters both act as decay rates for the momentum factors.  The $\eta$ parameter is the actual learning rate of the optimizer, which affects the magnitude the weight updates in the algorithm.  The $\epsilon$ parameter is not clearly described, but has been called a fuzz factor.  If we examine the expression it appears in $\theta_{t} = \theta_{t - 1} - \frac{\hat{m}_{t}}{\sqrt{\hat{v}_{t}} + \epsilon}$, where $\hat{m}_{t}$ and $\hat{v}_{t}$ are the two momentum parameters and $\theta$ is the parameter/s being optimized, we can see that $\epsilon$ affects the parameter which the authors call the, "Signal to Noise Ratio".  This means that the $\epsilon$ parameter affects how noise associated with gradient of a complex function, then goes on to update the parameter.  The values we will be using for them are the default values in TensorFlow, which are the recommended values in the original paper.  For the two $\beta$ values, we have the following settings $\beta_{1} = 0.9$ and $\beta_{2} = 0.999$, implying almost no momentum decay.  For $\epsilon$, we use $\epsilon = 0.8 \times 10^{-6}$ for all models.  For the learning rate, we are using the default value prescribed by the tf-seq2seq package, $\eta = 10^{-4}$.
 
 
 \subsection{Dataset}
@@ -308,7 +335,10 @@ Neural networks are inherently computationally intensive to train, as there is n
 For this project, we used multiple clusters, each with their own configuration.  This allowed us to train almost all of the networks at once.  However, the downside to this is the fact that speed comparisons will not be as useful.  However, for the purposes of comparison, we can assume that the addition of another GPU gives a linear speed-up.  Therefore, we can just multiply the total training time by the number of GPUs to give us a reasonable value to compare the training times.  The main clusters consisted of Amazon Web Services EC2 instances, Google Cloud Compute Engine instances, and running models on the Department of Computer Science's Ionic cluster.  Each of these services / clusters used the same model GPU, an Nvidia K80 Tesla.  This model GPU is currently the standard model used for training neural networks.  It offers 8.74 TFlops of computing power and \SI{24}{\giga\byte} of memory, allowing it to power through large numbers of matrix multiplications.  The first clusters we will be using are the 16 GPU cluster and 8 GPU cluster.  On Google Cloud Compute Engine, we will be using another 8 GPU instance.  For small test runs, we have the Ionic cluster with a total of 4 GPUs split over 2 nodes.
 
 \section{Results}
-The results were assembled by first training the models for a reasonable number of epochs over the dataset, and then examining the results 
+The results were assembled by first training the models for a reasonable number of epochs over the dataset, and then examining the results from the most recent training output file.  At that point, I had the model process the input test sequences and output a file containing all of the predicted secondary structure sequences.  The models were trained to output Q8 prediction based on the culled dataset.  All of the models output save files every 1000 time steps, allowing us to use models from a previous training step.  This helps to prevent against the possibility of overfitting, by allowing us to jump back to the point before the model started overfitting.
+
+\par
+All of the models require a large amount of helper code provided in the tf-seq2seq package.  Figure \ref{fg:exgraph} below, generated by TensorBoard, depicts this, as each node is a major section of the program.
 
 \begin{figure}[H]
 	\centering
@@ -317,26 +347,37 @@ The results were assembled by first training the models for a reasonable number 
 	\label{fg:exgraph}
 \end{figure}
 
-
+We can see that the neural network consists only of the model block, but we have assisting code that helps to make the model flexible and failure resistant.  In the Appendix of the paper, I include diagrams of the internals of the neural network, such as the layout of the Encoders and Decoders for some of the models.
 \subsection{Small Model}
 The small model was quite easy to train, and 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.75]{Small_Loss.pdf}
-	\caption{Training Loss Curve for Large Model}
+	\caption{Training Loss Curve for Small Model}
 	\label{fg:small_loss}
 \end{figure}
 
 \subsection{Medium Model}
+The medium model was the hardest model to train, for reasons that will be explained in the Computation Time section.  Unfortunately, due to this, I was only able to train the medium model for  time steps.  While this initially sounds bad, the medium model has some of the fastest convergence behavior, converging to a loss in the low 2's.  This can be seen in the graph below
 
 \subsection{Large Model}
-
+The large model was surprisingly easy to train, but time consuming.  This model took approximately 16 hours to train to 2400 time steps.  As it was the largest of the three models, I ran it on the 16 GPU machine to give it the most GPU memory and processing power.  
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.75]{Large_Loss.pdf}
 	\caption{Training Loss Curve for Large Model}
 	\label{fg:large_loss}
+\end{figure}
+
+\par
+When examining the embedding average weights, I noticed that they trained particularly quickly in comparison to the rest of the model.  This is displayed in Figure \ref{fg:embed_avg} below.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.75]{Embedding_Avg_Weight.pdf}
+	\caption{Embedding Avg Weight Training Curve}
+	\label{fg:embed_avg}
 \end{figure}
 
 \subsection{Computation Time}
@@ -348,20 +389,38 @@ As mentioned earlier, to complete the training and inference of the networks, I 
 	\label{tb:comp_time}
 	\begin{tabular}{|l|l|l|l|l|}
 		\hline
-		Model  & Service & \# GPUs & Avg. Steps / Sec & Steps / (GPU * Sec) \\ \hline
+		\textbf{Model}  & \textbf{Service} & \textbf{\# GPUs} & \textbf{Avg. Steps / Sec} & \textbf{Steps / (GPU * Sec)} \\ \hline
 		Small  & AWS     & 16      & 3.3              & 0.20625             \\ \hline
 		Medium & Google  & 8       & 0.08             & 0.01                \\ \hline
 		Large  & AWS     & 16      & 0.32             & 0.02                \\ \hline
 	\end{tabular}
 \end{table}
 
+As we can see, the small model was able to train the fastest, training approximately 10 times faster than the large model on the same configuration and 20 times faster than the medium model.  This is expected as the Backpropagation through Time algorithm must only backpropagate the errors one layer back for each network.  Overall, I found that the small and large models trained in a reasonable amount of time, given the configuration of the server they were running on.  The medium model
+
+
 \par
-As a small note, I found the models trained on Google Compute Engine to be significantly slower for some unknown reason.  It seemed as if the Google instances had more lag in comparison to the Amazon Web Services instances.  I was unable to debug the problem, and as such the amount of time that the medium model could train for was reduced.  This is highly unexpected, since the tf-seq2seq code advertised a training time of 2-3 days for the large model, on 8 Nvidia K80 GPUs \cite{britz:2017}.  Given that they considered 5,000,000 training steps fully trained, and that the medium model is half the size of the large model, I find these training time claims to be highly inflated.
+As a small note, I found the models trained on Google Compute Engine to be significantly slower for some unknown reason.  It seemed as if the Google instances had more lag in comparison to the Amazon Web Services instances.  I was unable to debug the problem, and as such the amount of time that the medium model could train for was reduced.  This is highly unexpected, since the tf-seq2seq code advertised a training time of 2-3 days for the large model, on 8 Nvidia K80 GPUs \cite{britz:2017}.  Given that they considered 5,000,000 training steps fully trained, and that the medium model is half the size of the large model, I find these training time claims to be highly inflated.  While the actual training times are still reasonable compared to other state of the art neural networks, I believe that the Google team should reexamine the runtime of the code in order to provide a much more reasonable estimate, or qualify their runtime with further data.
 
 \subsection{Summary}
-Although I did not train these models to the 5,000,000 training steps as done in the tf-seq2seq tutorial, I believe that the amount of training done was sufficient to extrapolate data from the models.  However, due to the flexibility of the tf-seq2seq software, the models can be trained further for any number of training steps, given the running files.
+Although I did not train these models to the 5,000,000 training steps as done in the tf-seq2seq tutorial, I believe that the amount of training done was sufficient to extrapolate data from the models.  However, due to the flexibility of the tf-seq2seq software, the models can be trained further for any number of training steps, given the running files.  All code, datasets, and TensorFlow model files can be found in the github repository located at \url{https://github.com/PrincetonUniversity/ProtNet}.  By the time this paper is finished, it will be available to the public.  The final Q8 accuracies are displayed in Table \ref{tb:q8_accuracy} below.
+
+\begin{table}[H]
+	\centering
+	\caption{Q8 Accuracy of the Models}
+	\label{tb:q8_accuracy}
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Model}  & \textbf{Q8 Accuracy} \\ \hline
+		Small  &             \\ \hline
+		Medium &             \\ \hline
+		Large  &             \\ \hline
+	\end{tabular}
+\end{table}
+
 
 \section{Conclusion}
+Overall, I am quite satisfied with the results of this study.  From the accuracies achieved, we can clearly see that these models are capable of predicting secondary structure.  It would be worth studying these models further by tuning the hyperparameters better, finding ways to expand the dataset by using a better culling algorithm, or 
 
 \par
 For future work, I would like to investigate the incorporation of multiple alignment data in the input to the network.  Integrating multiple alignment data has been shown to be critical in improving the accuracy of secondary structure prediction.  It was originally suggested that I use this as my main architecture for this study; however, I wanted to focus on the ability for this type of network architecture to inference using only the input sequence.  One of the main difficulties is that it would require protein BLAST (BLASTP) to be packaged offline, as the network would prediction code would need to call BLASTP for every new protein sequence.  However, once this is done, one would have to change the network architecture to accept this extra alignment information.  I propose the following modifications to allow for this.  First, instead of using the embedding vectors on three-mers in the amino acid sequence, we use the embedding vectors to represent a single column of a protein alignment.  Consequently, this would mean that the number of embedding vectors to represent the entire sequence would be equal to the length of the amino acid sequence.  This would give the extra benefit of allowing the network to perform conformation prediction for individual amino acids instead of individual tri-mers.  One of the pitfalls, however, is that it will accept only a constant number of alignment proteins for a given input protein.  Furthermore, total vocabulary size of the embedding would increase significantly, as it must now include alignment symbols in each embedding "word".
@@ -411,8 +470,16 @@ One of the key difficulties training machine learning algorithms on secondary st
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.13, angle=90]{small_model_full_graph.png}
-	\caption{Computational Graph of small model}
+	\caption{Computational Graph of Large Model}
 	\label{fg:small_model_graph}
+\end{figure}
+\pagebreak
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.103, angle=90]{small_graph_decoder.png}
+	\caption{Computational Graph of Large Model Decoder}
+	\label{fg:large_model_decoder_graph}
 \end{figure}
 
 \end{document}

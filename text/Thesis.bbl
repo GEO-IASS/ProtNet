@@ -128,8 +128,11 @@ R.~Longtin, ``A forgotten debate: is selenocysteine the 21st amino acid?''
 \BIBentrySTDinterwordspacing
 
 \bibitem{mikolov:2013:2}
+\BIBentryALTinterwordspacing
 T.~{Mikolov} \emph{et~al.}, ``{Distributed Representations of Words and Phrases
-  and their Compositionality},'' \emph{ArXiv e-prints}, Oct. 2013.
+  and their Compositionality},'' \emph{ArXiv e-prints}, Oct. 2013. Available:
+  \url{https://arxiv.org/abs/1310.4546}
+\BIBentrySTDinterwordspacing
 
 \bibitem{mikolov:2013}
 \BIBentryALTinterwordspacing
@@ -160,6 +163,14 @@ C.~Olah. (2015) Understanding lstm networks. Available:
   \url{http://colah.github.io/posts/2015-08-Understanding-LSTMs/}
 \BIBentrySTDinterwordspacing
 
+\bibitem{pollastri:2005}
+\BIBentryALTinterwordspacing
+G.~Pollastri and A.~Mclysaght, ``Porter: a new, accurate server for protein
+  secondary structure prediction,'' \emph{Bioinformatics}, vol.~21, no.~8, pp.
+  1719--1720, 2005. Available:
+  \url{https://doi.org/10.1093/bioinformatics/bti203}
+\BIBentrySTDinterwordspacing
+
 \bibitem{rosenblatt:1958}
 \BIBentryALTinterwordspacing
 F.~Rosenblatt, ``The perceptron: A probabilistic model for information storage
@@ -182,6 +193,13 @@ B.~Rost and C.~Sander, ``Prediction of protein secondary structure at better
   than 70% accuracy,'' \emph{Journal of Molecular Biology}, vol. 232, no.~2,
   pp. 584 -- 599, 1993. Available:
   \url{http://www.sciencedirect.com/science/article/pii/S0022283683714130}
+\BIBentrySTDinterwordspacing
+
+\bibitem{schuster:1997}
+\BIBentryALTinterwordspacing
+M.~Schuster and K.~K. Paliwal, ``Bidirectional recurrent neural networks,''
+  \emph{IEEE Transactions on Signal Processing}, vol.~45, no.~11, pp.
+  2673--2681, Nov 1997. Available: \url{https://doi.org/10.1109/78.650093}
 \BIBentrySTDinterwordspacing
 
 \bibitem{seung:2017}
