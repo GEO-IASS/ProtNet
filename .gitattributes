@@ -1,0 +1,11 @@
+*.txt filter=lfs diff=lfs merge=lfs -text
+data/target_vocab.txt filter=lfs diff=lfs merge=lfs -text
+data/idFile.txt filter=lfs diff=lfs merge=lfs -text
+data/sequences.txt filter=lfs diff=lfs merge=lfs -text
+data/ss.txt filter=lfs diff=lfs merge=lfs -text
+data/target_train.txt filter=lfs diff=lfs merge=lfs -text
+data/target_test.txt filter=lfs diff=lfs merge=lfs -text
+data/cull_seq.txt filter=lfs diff=lfs merge=lfs -text
+data/source_test.txt filter=lfs diff=lfs merge=lfs -text
+data/source_train.txt filter=lfs diff=lfs merge=lfs -text
+data/source_vocab.txt filter=lfs diff=lfs merge=lfs -text
