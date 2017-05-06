@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.12)  5 MAY 2017 21:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.19)  5 MAY 2017 23:51
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
 **Thesis.tex
 (./Thesis.tex
 LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+Babel <3.9q> and hyphenation patterns for 12 language(s) loaded.
 (./jpaper.cls
 Document Class: jpaper 2012/08/02 ISCA Submission template
 (./etoolbox.sty
@@ -1536,123 +1536,135 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 \openout8 = `Thesis.lof'.
 
  [4]
-[5] <images/20-Common-Amino-Acids-v2.pdf, id=198, 1195.01462pt x 845.0471pt>
+[5] <images/20-Common-Amino-Acids-v2.pdf, id=202, 1195.01462pt x 845.0471pt>
 File: images/20-Common-Amino-Acids-v2.pdf Graphic file (type pdf)
 
 <use images/20-Common-Amino-Acids-v2.pdf>
 Package pdftex.def Info: images/20-Common-Amino-Acids-v2.pdf used on input line
- 87.
+ 90.
 (pdftex.def)             Requested size: 472.50293pt x 354.91736pt.
 
-Overfull \hbox (2.74791pt too wide) in paragraph at lines 87--88
+Overfull \hbox (2.74791pt too wide) in paragraph at lines 90--91
  [][] 
  []
 
-LaTeX Font Info:    Try loading font information for T1+phv on input line 88.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 91.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 9.99591pt on input line 88.
+(Font)              scaled to size 9.99591pt on input line 91.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `phv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 88.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 91.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 9.99591pt on input line 88.
+(Font)              scaled to size 9.99591pt on input line 91.
  [6]
-<images/ProteinStructure.pdf, id=207, 348.33978pt x 607.99467pt>
+<images/ProteinStructure.pdf, id=211, 348.33978pt x 607.99467pt>
 File: images/ProteinStructure.pdf Graphic file (type pdf)
 
 <use images/ProteinStructure.pdf>
-Package pdftex.def Info: images/ProteinStructure.pdf used on input line 99.
+Package pdftex.def Info: images/ProteinStructure.pdf used on input line 102.
 (pdftex.def)             Requested size: 215.96841pt x 376.9528pt.
  [7 <./images/20-Common-Amino-Acids-v2.pdf>]
-[8 <./images/ProteinStructure.pdf>] [9]
-<images/unrolledRNN.pdf, id=1089, 511.8202pt x 134.53075pt>
+[8 <./images/ProteinStructure.pdf>] [9] [10]
+<images/unrolledRNN.pdf, id=1102, 511.8202pt x 134.53075pt>
 File: images/unrolledRNN.pdf Graphic file (type pdf)
 
 <use images/unrolledRNN.pdf>
-Package pdftex.def Info: images/unrolledRNN.pdf used on input line 130.
+Package pdftex.def Info: images/unrolledRNN.pdf used on input line 136.
 (pdftex.def)             Requested size: 460.63393pt x 121.07652pt.
- [10]
-<images/LSTM.pdf, id=1103, 429.12932pt x 283.91388pt>
+
+<images/LSTM.pdf, id=1107, 429.12932pt x 283.91388pt>
 File: images/LSTM.pdf Graphic file (type pdf)
  <use images/LSTM.pdf>
-Package pdftex.def Info: images/LSTM.pdf used on input line 142.
+Package pdftex.def Info: images/LSTM.pdf used on input line 148.
 (pdftex.def)             Requested size: 321.84619pt x 212.93488pt.
 
 [11 <./images/unrolledRNN.pdf>] [12 <./images/LSTM.pdf>] [13] [14]
-<images/encoder_decoder.pdf, id=1169, 451.94368pt x 165.0923pt>
+<images/encoder_decoder.pdf, id=1173, 451.94368pt x 165.0923pt>
 File: images/encoder_decoder.pdf Graphic file (type pdf)
 
 <use images/encoder_decoder.pdf>
-Package pdftex.def Info: images/encoder_decoder.pdf used on input line 189.
+Package pdftex.def Info: images/encoder_decoder.pdf used on input line 195.
 (pdftex.def)             Requested size: 451.94257pt x 165.09189pt.
  [15 <./images/encoder_decoder.pdf>] [16]
-[17] [18] [19] <images/attentionRNN.pdf, id=1235, 614.295pt x 400.49625pt>
+[17] [18] [19] <images/attentionRNN.pdf, id=1239, 614.295pt x 400.49625pt>
 File: images/attentionRNN.pdf Graphic file (type pdf)
 
 <use images/attentionRNN.pdf>
-Package pdftex.def Info: images/attentionRNN.pdf used on input line 280.
+Package pdftex.def Info: images/attentionRNN.pdf used on input line 286.
 (pdftex.def)             Requested size: 448.43161pt x 292.35983pt.
  [20] [21 <./images/attentionRNN.pdf>] [22]
-[23] [24] [25] <images/example_graph.png, id=1925, 1355.0625pt x 884.30376pt>
+[23] [24] [25] <images/example_graph.png, id=1929, 1355.0625pt x 884.30376pt>
 File: images/example_graph.png Graphic file (type png)
 
 <use images/example_graph.png>
-Package pdftex.def Info: images/example_graph.png used on input line 344.
+Package pdftex.def Info: images/example_graph.png used on input line 350.
 (pdftex.def)             Requested size: 474.27899pt x 309.51096pt.
 
-Overfull \hbox (4.52397pt too wide) in paragraph at lines 344--345
+Overfull \hbox (4.52397pt too wide) in paragraph at lines 350--351
  [][] 
  []
 
-[26] <images/Small_Loss.pdf, id=1932, 562.1pt x 361.35pt>
+[26] <images/Small_Loss.pdf, id=1936, 562.1pt x 361.35pt>
 File: images/Small_Loss.pdf Graphic file (type pdf)
 
 <use images/Small_Loss.pdf>
-Package pdftex.def Info: images/Small_Loss.pdf used on input line 355.
+Package pdftex.def Info: images/Small_Loss.pdf used on input line 361.
 (pdftex.def)             Requested size: 477.78726pt x 307.14896pt.
 
-Overfull \hbox (8.03224pt too wide) in paragraph at lines 355--356
+Overfull \hbox (8.03224pt too wide) in paragraph at lines 361--362
  [][] 
  []
 
 [27 <./images/example_graph.png>]
-<images/Large_Loss.pdf, id=1938, 562.1pt x 361.35pt>
-File: images/Large_Loss.pdf Graphic file (type pdf)
+<images/Medium_Loss.pdf, id=1943, 562.1pt x 361.35pt>
+File: images/Medium_Loss.pdf Graphic file (type pdf)
 
-<use images/Large_Loss.pdf>
-Package pdftex.def Info: images/Large_Loss.pdf used on input line 367.
+<use images/Medium_Loss.pdf>
+Package pdftex.def Info: images/Medium_Loss.pdf used on input line 371.
 (pdftex.def)             Requested size: 477.78726pt x 307.14896pt.
 
-Overfull \hbox (8.03224pt too wide) in paragraph at lines 367--368
+Overfull \hbox (8.03224pt too wide) in paragraph at lines 371--372
  [][] 
  []
 
 [28 <./images/Small_Loss.pdf>]
-<images/Embedding_Avg_Weight.pdf, id=1955, 562.1pt x 361.35pt>
-File: images/Embedding_Avg_Weight.pdf Graphic file (type pdf)
+<images/Large_Loss.pdf, id=1959, 562.1pt x 361.35pt>
+File: images/Large_Loss.pdf Graphic file (type pdf)
 
-<use images/Embedding_Avg_Weight.pdf>
-Package pdftex.def Info: images/Embedding_Avg_Weight.pdf used on input line 379
-.
+<use images/Large_Loss.pdf>
+Package pdftex.def Info: images/Large_Loss.pdf used on input line 380.
 (pdftex.def)             Requested size: 477.78726pt x 307.14896pt.
 
-Overfull \hbox (8.03224pt too wide) in paragraph at lines 379--380
+Overfull \hbox (8.03224pt too wide) in paragraph at lines 380--381
  [][] 
  []
 
-[29 <./images/Large_Loss.pdf>] [30 <./images/Embedding_Avg_Weight.pdf>]
+[29 <./images/Medium_Loss.pdf>]
+<images/Embedding_Avg_Weight.pdf, id=1976, 562.1pt x 361.35pt>
+File: images/Embedding_Avg_Weight.pdf Graphic file (type pdf)
+
+<use images/Embedding_Avg_Weight.pdf>
+Package pdftex.def Info: images/Embedding_Avg_Weight.pdf used on input line 392
+.
+(pdftex.def)             Requested size: 477.78726pt x 307.14896pt.
+
+Overfull \hbox (8.03224pt too wide) in paragraph at lines 392--393
+ [][] 
+ []
+
+[30 <./images/Large_Loss.pdf>] [31 <./images/Embedding_Avg_Weight.pdf>]
 Package microtype Info: Loading generic settings for font family
 (microtype)             `pcrs' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-[31] [32] [33] [34] (./Thesis.bbl [35] [36] [37]) [38]
+[32] [33] [34] [35] (./Thesis.bbl [36] [37] [38]) [39]
 (./_minted-Thesis/4364F68D66C3600826B18B68EA6047198162D90B5B185488708ADCDEF45E6
 07B.pygtex
 LaTeX Font Info:    Font shape `T1/pcrs/m/it' in size <12> not available
@@ -1661,46 +1673,58 @@ LaTeX Font Info:    Font shape `T1/pcrs/m/sl' will be
 (Font)              scaled to size 10.5pt on input line 2.
 )
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
-t line 450.
- [39]
+t line 448.
+ [40]
 (./_minted-Thesis/A406E53D3F19158B7A6801212E8784D40ADA6D9F74C452F1D171DD7A170AA
-F5D.pygtex) [40]
+F5D.pygtex) [41]
 (./_minted-Thesis/75843F418E9B6E97FB526EAB28A064FCB20C856AE2F81862CC6F75E67CF34
-987.pygtex) [41]
+987.pygtex) [42]
 (./_minted-Thesis/44FFB78EE93CAEA810E2514734247478BE83E4E380325B4AC2FF1B975685D
-D52.pygtex) [42]
-<images/small_model_full_graph.png, id=2092, 4711.6025pt x 2833.58624pt>
+D52.pygtex) [43]
+<images/small_model_full_graph.png, id=2112, 4711.6025pt x 2833.58624pt>
 File: images/small_model_full_graph.png Graphic file (type png)
 
 <use images/small_model_full_graph.png>
 Package pdftex.def Info: images/small_model_full_graph.png used on input line 4
-76.
+74.
 (pdftex.def)             Requested size: 612.52983pt x 368.37915pt.
- [43 <./images/small_model_full_graph.png>] <images/small_graph_decoder.png, id
-=2099, 5858.88875pt x 3693.8pt>
+ [44 <./images/small_model_full_graph.png>] <images/small_graph_decoder.png, id
+=2118, 5858.88875pt x 3693.8pt>
 File: images/small_graph_decoder.png Graphic file (type png)
 
 <use images/small_graph_decoder.png>
-Package pdftex.def Info: images/small_graph_decoder.png used on input line 484.
+Package pdftex.def Info: images/small_graph_decoder.png used on input line 482.
 
 (pdftex.def)             Requested size: 603.44548pt x 380.44875pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 489.
- [44 <./images/small_graph_decoder.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 489.
+ [45 <./images/small_graph_decoder.png>]
+<images/large_graph_encoder.png, id=2124, 5259.65pt x 3494.05376pt>
+File: images/large_graph_encoder.png Graphic file (type png)
 
-(./Thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 489.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 489.
+<use images/large_graph_encoder.png>
+Package pdftex.def Info: images/large_graph_encoder.png used on input line 489.
+
+(pdftex.def)             Requested size: 525.99582pt x 349.42584pt.
+
+Overfull \hbox (56.2408pt too wide) in paragraph at lines 489--490
+[][] 
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 494.
+[46 <./images/large_graph_encoder.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 494.
+ (./Thesis.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 494.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 494.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 422C9942516A9B229E46ADB67A42E69D;3100.
  ) 
 Here is how much of TeX's memory you used:
- 26932 strings out of 493029
- 478732 string characters out of 6136234
- 575879 words of memory out of 5000000
- 29746 multiletter control sequences out of 15000+600000
+ 26946 strings out of 494497
+ 479072 string characters out of 6172400
+ 572041 words of memory out of 5000000
+ 29636 multiletter control sequences out of 15000+600000
  68543 words of font info for 241 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
+ 264 hyphenation exceptions out of 8191
  48i,12n,45p,10358b,925s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
@@ -1715,10 +1739,10 @@ e/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/ti
 mes/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on Thesis.pdf (44 pages, 2324463 bytes).
+Output written on Thesis.pdf (46 pages, 3085329 bytes).
 PDF statistics:
- 2182 PDF objects out of 2487 (max. 8388607)
- 1646 compressed objects within 17 object streams
- 140 named destinations out of 1000 (max. 500000)
- 38162 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 2207 PDF objects out of 2487 (max. 8388607)
+ 1663 compressed objects within 17 object streams
+ 143 named destinations out of 1000 (max. 500000)
+ 38172 words of extra memory for PDF output out of 42996 (max. 10000000)
 
