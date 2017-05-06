@@ -65,7 +65,6 @@ I would like to thank the Roman Catholic church.  My years of being a practicing
 
 \vspace{2pc}
 \listoffigures
-\listoflistings
 }
 \pagebreak
 
@@ -349,36 +348,40 @@ All of the models require a large amount of helper code provided in the tf-seq2s
 
 We can see that the neural network consists only of the model block, but we have assisting code that helps to make the model flexible and failure resistant.  In the Appendix of the paper, I include diagrams of the internals of the neural network, such as the layout of the Encoders and Decoders for some of the models.
 \subsection{Small Model}
-The small model was quite easy to train, and 
+The small model was quite easy to train.  In total, I was able to train the model for 25,000 time steps in four hours on a 16 GPU server.  The learning curve, provided in Figure \ref{fg:small_loss} shows the loss function over the 25,000 time steps.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.75]{Small_Loss.pdf}
+	\includegraphics[scale=0.85]{Small_Loss.pdf}
 	\caption{Training Loss Curve for Small Model}
 	\label{fg:small_loss}
 \end{figure}
 
 \subsection{Medium Model}
-The medium model was the hardest model to train, for reasons that will be explained in the Computation Time section.  Unfortunately, due to this, I was only able to train the medium model for  time steps.  While this initially sounds bad, the medium model has some of the fastest convergence behavior, converging to a loss in the low 2's.  This can be seen in the graph below
+The medium model was the hardest model to train, for reasons that will be explained in the Computation Time section.  Unfortunately, due to this, I was only able to train the medium model for  time steps over the course of 23 hours.  While this initially sounds bad, the medium model has some of the fastest convergence behavior, converging to a loss in the low 2's.  This can be seen Figure -- below.
 
 \subsection{Large Model}
-The large model was surprisingly easy to train, but time consuming.  This model took approximately 16 hours to train to 2400 time steps.  As it was the largest of the three models, I ran it on the 16 GPU machine to give it the most GPU memory and processing power.  
+The large model was surprisingly easy to train, but time consuming.  This model took approximately 16 hours to train to 24,000 time steps.  As it was the largest of the three models, I ran it on the 16 GPU machine to give it the most GPU memory and processing power.  
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.75]{Large_Loss.pdf}
+	\includegraphics[scale=0.85]{Large_Loss.pdf}
 	\caption{Training Loss Curve for Large Model}
 	\label{fg:large_loss}
 \end{figure}
+
+As we can see in the learning curve, the large model was able to very quickly drop the loss to 3.5, but then very quickly slowed down and was only able to was able to lower the loss function to approximately 3.0.  However, it was only able to lower the loss function less than 3.0 for 100 time step intervals, after which it proceeded to jump back up to 3.0.
 
 \par
 When examining the embedding average weights, I noticed that they trained particularly quickly in comparison to the rest of the model.  This is displayed in Figure \ref{fg:embed_avg} below.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.75]{Embedding_Avg_Weight.pdf}
+	\includegraphics[scale=0.85]{Embedding_Avg_Weight.pdf}
 	\caption{Embedding Avg Weight Training Curve}
 	\label{fg:embed_avg}
 \end{figure}
+
+This figure shows that the embeddings layer trained before even 5,000 training steps.  This is quicker than both the medium and small models, which took up to------and 15,500 steps respectively to train the embeddings.
 
 \subsection{Computation Time}
 As mentioned earlier, to complete the training and inference of the networks, I had to run them on multiple machines, each with their own unique set of hardware specifications.  Therefore, any of the following time results must be viewed with this fact in mind.  However, provided below in the table are the number of training steps executed per second and how many GPU's available for training the model.
@@ -396,7 +399,7 @@ As mentioned earlier, to complete the training and inference of the networks, I 
 	\end{tabular}
 \end{table}
 
-As we can see, the small model was able to train the fastest, training approximately 10 times faster than the large model on the same configuration and 20 times faster than the medium model.  This is expected as the Backpropagation through Time algorithm must only backpropagate the errors one layer back for each network.  Overall, I found that the small and large models trained in a reasonable amount of time, given the configuration of the server they were running on.  The medium model
+As we can see, the small model was able to train the fastest, training approximately 10 times faster than the large model on the same configuration and 20 times faster than the medium model.  This is expected as the Backpropagation through Time algorithm must only backpropagate the errors one layer back for each network.  Overall, I found that the small and large models trained in a reasonable amount of time, given the configuration of the server they were running on.  The medium model on the other hand trained unreasonably slow in comparison.
 
 
 \par
@@ -418,9 +421,10 @@ Although I did not train these models to the 5,000,000 training steps as done in
 	\end{tabular}
 \end{table}
 
+From these results, it is clear that the Encoder / Decoder networks have learned to predict secondary structure, as the results are significantly better than random prediction given the eight Q8 classes, which is $\frac{1}{8} = 12.5\%$.
 
 \section{Conclusion}
-Overall, I am quite satisfied with the results of this study.  From the accuracies achieved, we can clearly see that these models are capable of predicting secondary structure.  It would be worth studying these models further by tuning the hyperparameters better, finding ways to expand the dataset by using a better culling algorithm, or 
+Overall, I am quite satisfied with the results of this study.  From the accuracies achieved, we can clearly see that these models are capable of predicting secondary structure.  It would be worth studying these models further by tuning the hyperparameters better, finding ways to expand the dataset by using a better culling algorithm, or training the models for a longer period of time.
 
 \par
 For future work, I would like to investigate the incorporation of multiple alignment data in the input to the network.  Integrating multiple alignment data has been shown to be critical in improving the accuracy of secondary structure prediction.  It was originally suggested that I use this as my main architecture for this study; however, I wanted to focus on the ability for this type of network architecture to inference using only the input sequence.  One of the main difficulties is that it would require protein BLAST (BLASTP) to be packaged offline, as the network would prediction code would need to call BLASTP for every new protein sequence.  However, once this is done, one would have to change the network architecture to accept this extra alignment information.  I propose the following modifications to allow for this.  First, instead of using the embedding vectors on three-mers in the amino acid sequence, we use the embedding vectors to represent a single column of a protein alignment.  Consequently, this would mean that the number of embedding vectors to represent the entire sequence would be equal to the length of the amino acid sequence.  This would give the extra benefit of allowing the network to perform conformation prediction for individual amino acids instead of individual tri-mers.  One of the pitfalls, however, is that it will accept only a constant number of alignment proteins for a given input protein.  Furthermore, total vocabulary size of the embedding would increase significantly, as it must now include alignment symbols in each embedding "word".
